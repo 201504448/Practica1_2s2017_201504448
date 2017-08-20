@@ -13,3 +13,14 @@ C:\Users\Jefferson\Documents\Visual Studio 2015\Projects\ESTRUCTURAS\Practica1Bl
 C:\Users\Jefferson\Documents\Visual Studio 2015\Projects\ESTRUCTURAS\Practica1BlockChain\Practica1BlockChain\obj\Debug\Practica1Estructuras.EnviarMensajes.resources
 C:\Users\Jefferson\Documents\Visual Studio 2015\Projects\ESTRUCTURAS\Practica1BlockChain\Practica1BlockChain\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Jefferson\Documents\Visual Studio 2015\Projects\ESTRUCTURAS\Practica1BlockChain\Practica1BlockChain\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\bin\Debug\Practica1BlockChain.exe.config
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\obj\Debug\Practica1BlockChain.exe
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\obj\Debug\Practica1BlockChain.pdb
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\bin\Debug\Practica1BlockChain.exe
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\bin\Debug\Practica1BlockChain.pdb
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\obj\Debug\Practica1BlockChain.csprojResolveAssemblyReference.cache
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\obj\Debug\Practica1Estructuras.Form1.resources
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\obj\Debug\Practica1Estructuras.Properties.Resources.resources
+C:\Users\Jefferson\Desktop\practica1EDD\Practica1BlockChain\Practica1BlockChain\obj\Debug\Practica1BlockChain.csproj.GenerateResource.Cache
