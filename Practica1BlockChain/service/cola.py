@@ -10,7 +10,7 @@ class nodoCola:
         return self.info
 
 
-class cola:
+class ListaCola:
     def __init__(self):
         self.cabeza = None
         self.ultimo = None
@@ -70,3 +70,5 @@ class cola:
             while self.cabeza != None:
                 self.sacar()
             self.sacar()
+
+

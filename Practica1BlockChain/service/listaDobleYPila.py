@@ -96,16 +96,30 @@ class pila:
         if self.isEmpty() == True :
             self.cabeza = None
         else:
-            aux = self.cabeza
+            eliminado = self.cabeza
+            aux = self.cabeza.siguiente
             self.cabeza = None
-            print("Elemento eliminado: "+aux.verNodo())
-            return aux.dato    
+            self.cabeza = aux
+            print("Elemento eliminado: "+eliminado.verNodo())
+            return aux.info
 
+    variable = ""
+    numero = 1
     def separar(self,dato):
         for letra in dato:
-            if letra != "(" and letra != ")" and letra !=  '"' :
+            if letra != "(" and letra != ")" and letra !=  '"' and letra != "+" and letra != "-" and letra != "*" and letra != "/" :
+                self.variable = str(self.variable) + str(letra)
+                print self.variable+" variable hasta el momento"
+            elif letra == "+" or letra == "-" or letra == "/" or letra == "*":
+                if self.variable != "":
+                    self.push(self.variable)
+                    self.variable = ""
                 self.push(letra)
-    
+            elif letra == ")":
+                if self.variable != "":
+                    self.push(self.variable)
+                    self.variable = ""
+
     def mostrar(self)                :
         print("------Elementos de la pila-----")
         temporal = self.cabeza
@@ -122,7 +136,11 @@ class pila:
             self.pop()
 
 #listaPila = pila()
-#listaPila.separar("2+3")
+#listaPila.separar("((23+34)*659)-89000000)")
+#listaPila.mostrar()
+#listaPila.pop()
+#listaPila.pop()
+#listaPila.pop()
 #listaPila.mostrar()
 
 #listaColita = cola()

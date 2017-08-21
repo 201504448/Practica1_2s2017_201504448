@@ -4,7 +4,7 @@ from app import app
 from flask import request
 
 from listaDobleYPila import pila
-from cola import cola
+from cola import ListaCola
 from listaSimple import ListaSimple
 
 
@@ -97,7 +97,7 @@ def v():
 		raise e
 	return "Se vacio la lista"
 listaPila = pila()
-listaCola = cola()
+listaCola = ListaCola()
 listaSim = ListaSimple();
 
 

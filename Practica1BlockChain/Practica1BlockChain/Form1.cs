@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Practica1Estructuras
 {
@@ -149,12 +150,7 @@ namespace Practica1Estructuras
                     texto = sr.ReadToEnd();
                     sr.Close();
                     string carnet = "";
-
-                    //texto = texto.Replace("\"", "\\\"");
-                    //json = json.Replace('\n', '\0');
-                    //json = json.Replace(' ', '\0');
                     Console.WriteLine(texto);
-                    //dynamic array = JsonConvert.DeserializeObject(texto);
                     jd = JsonConvert.DeserializeObject<RootObject>(texto);
                     ipLocal = jd.nodos.local;
                     mascara = jd.nodos.mascara;
@@ -199,41 +195,14 @@ namespace Practica1Estructuras
         {
 
         }
+
         private static readonly HttpClient cliente = new HttpClient();
+
         private async void button9_Click(object sender, EventArgs e)
         {
             if (txtOP.Text.Length > 0 && txtIP.Text.Length > 0)
             {
-                try
-                {
-                    string respuesta = "";
-                    string ip = txtIP.Text;
-                    string op = txtOP.Text;
-                    //var responseString = await client.GetStringAsync("http://127.0.0.1:5000/hola");
-                    using (var client = new WebClient())
-                    {
-                        var values = new NameValueCollection();
-                        values["inorden"] = op;
-                        var response = client.UploadValues("http://"+ip+":5000/mensaje", values);
-                        var responseString = Encoding.Default.GetString(response);
-                        respuesta = responseString;
-                        MessageBox.Show(responseString);
-                        //de una vez deberiamos ir llenando el datagridview pienso yo 
-                    }
-                    if (respuesta.Equals("true"))
-                    {
-                        MessageBox.Show("Respuesta recibida: " + respuesta);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ocurrio un error al Enviar el mensaje");
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("ocurrio un error al enviar el mensaje");
-                    throw;
-                }
+                post_enviarMsj(txtIP.Text, txtOP.Text);
 
             }
             else
@@ -243,5 +212,101 @@ namespace Practica1Estructuras
 
             }
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Hide();
+
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "XML|*.xml";
+                openFileDialog.Title = "Seleccione una archivo XML";
+
+                if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    StreamReader sr = new StreamReader(openFileDialog.FileName);
+                    texto = sr.ReadToEnd();
+                    Console.WriteLine(texto);
+                    //mandamos abrir la ruta del archivo
+                    try
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml(texto);
+
+                        string json = JsonConvert.SerializeXmlNode(doc);
+                        //json = json.Replace("\\n", "");
+                        //json = json.Replace("\\t", "");
+                        //json = json.Replace("\\r", "");
+
+                        Console.WriteLine(json);
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("ocurrio un error al querer transformar el xml");
+                        throw;
+
+                    }
+
+                }
+                this.Show();
+            }
+            catch (Exception)
+            {
+                this.Show();
+                throw;
+            }
+
+        }
+
+        public void enviarMensaje(String json)
+        {
+            RootObject2 js = JsonConvert.DeserializeObject<RootObject2>(json);
+            foreach (Mensaje msj in js.mensajes.mensaje)
+            {
+                if(msj.IP == null)
+                {
+                    foreach(String IP in msj.nodos.IP)
+                    {
+                        post_enviarMsj(IP, msj.texto);
+                    }
+                }else
+                {
+                    post_enviarMsj(msj.IP, msj.texto);
+                }
+            }
+        }
+
+        private void post_enviarMsj(string ip, string texto)
+        {
+            try
+            {
+                string respuesta = "";
+                using (var client = new WebClient())
+                {
+                    var values = new NameValueCollection();
+                    values["inorden"] = texto;
+                    var response = client.UploadValues("http://" + ip + ":5000/mensaje", values);
+                    var responseString = Encoding.Default.GetString(response);
+                    respuesta = responseString;
+                    MessageBox.Show(responseString);
+                    //de una vez deberiamos ir llenando el datagridview pienso yo 
+                }
+                if (respuesta.Equals("true"))
+                {
+                    MessageBox.Show("Respuesta recibida: " + respuesta);
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrio un error al Enviar el mensaje");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ocurrio un error al enviar el mensaje");
+                throw;
+            }
+        }
     }
 }
+
